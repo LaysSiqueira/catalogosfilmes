@@ -1,7 +1,10 @@
 import{ con } from './connetion.js'
 
+import { Router } from 'express'
+const server = Router();
 
-export async function login(email,senha){
+
+export async function login (email,senha){
     const comando = 
         `select id_usuario      id,
                 nm_usuario      nome,
@@ -11,5 +14,6 @@ export async function login(email,senha){
         and ds_senha             =? `       
         
     const [linhas] = await con.query(comando, [email, senha])
-     return linhas;
+    return linhas[0];
 }
+export default server;
